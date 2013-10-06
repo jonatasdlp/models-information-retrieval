@@ -1,0 +1,5 @@
+require 'vidibus/core_extensions/object'
+require 'vidibus/core_extensions/hash'
+require 'vidibus/core_extensions/array'
+require 'vidibus/core_extensions/string'
+require 'vidibus/core_extensions/file_utils'

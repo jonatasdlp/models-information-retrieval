@@ -1,0 +1,9 @@
+footer {
+  text-align: center;
+}
+
+.navbar-inner {
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}

@@ -1,0 +1,18 @@
+<div class="span12">
+  <table class="table table-bordered">
+    <tr>
+      <td style="text-align:center"><h3><%= t('terms') %></h3></td>
+      <td style="text-align:center"><h3><%= t('Ocurrency') %></h3></td>
+    </tr>
+    <% @vocabulary.inverted_index.each_with_index do |t, i| %>
+      <tr>
+        <td><%= t.word %></td>
+        <td>
+          <% t.location.each do |l| %>
+            <%= l[:document] %>, <%= l[:df] %>, <%= l[:ocurrency] %>;
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
