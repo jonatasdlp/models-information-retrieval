@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 class AppController < ApplicationController
   def index
     base
