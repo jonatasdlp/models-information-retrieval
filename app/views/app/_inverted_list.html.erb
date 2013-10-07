@@ -1,0 +1,21 @@
+<div class="span12">
+  <div class="well well-small">
+    <h3><i class="icon-align-justify"></i> <%= t('inverted_list') %></h3>
+  </div>
+  <table class="table table-bordered">
+    <tr>
+      <td style="text-align:center"><h4><%= t('terms') %></h4></td>
+      <td style="text-align:center"><h4><%= t('Ocurrency') %></h4></td>
+    </tr>
+    <% object.inverted_index.each_with_index do |t, i| %>
+      <tr>
+      <td><%= t.word %></td>
+      <td>
+        <% t.location.each do |l| %>
+          <%= l[:document] %>, <%= l[:df] %>, <%= l[:ocurrency] %>;
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+</div>

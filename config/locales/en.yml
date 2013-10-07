@@ -30,4 +30,6 @@ en:
   index: "Index"
   terms: "Terms"
   ocurrency: "Ocurrency"
+  vocabulary: "Vocabulary"
+  inverted_list: "Inverted List"
 

@@ -7,7 +7,7 @@
       <td style="text-align:center"><h4><%= t('terms') %></h4></td>
       <td style="text-align:center"><h4>DF</h4></td>
     </tr>
-    <% @vocabulary.inverted_index.each_with_index do |t, i| %>
+    <% object.inverted_index.each_with_index do |t, i| %>
       <tr>
       <td><%= t.word %></td>
       <td>

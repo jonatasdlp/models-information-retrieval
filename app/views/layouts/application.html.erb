@@ -49,8 +49,16 @@
           <a class="brand" href="#"><%= t('models_information_retrieval') %></a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to t('home'), "/"  %></li>
-              <li><%= link_to t('about'), "/path2"  %></li>
+              <li>
+                <%= link_to "/" do %>
+                  <i class="icon-home"></i> <%= t('home') %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "/path2"  do %>
+                  <i class="icon-info-sign"></i> <%= t('about') %>
+                <% end %>  
+              </li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -63,10 +71,10 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header"><%= t('options') %></li>
-              <li><%= link_to t('index'), "/path1"  %></li>
-              <li><%= link_to t('terms'), "/path2"  %></li>
-              <li><%= link_to t('search_boolean'), "/path3"  %></li>
-              <li><%= link_to t('search_vetorial'), "/path4" %></li>
+              <li><%= link_to t('vocabulary'), app_path(2), id: 'voc' %></li>
+              <li><%= link_to t('inverted_list'), app_path(1), id: 'inv'  %></li>
+              <li><%= link_to t('search_boolean'), boolean_app_index_path %></li>
+              <li><%= link_to t('search_vetorial'), vetorial_app_index_path  %></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
