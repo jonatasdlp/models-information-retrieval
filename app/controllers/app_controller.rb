@@ -14,6 +14,14 @@ class AppController < ApplicationController
     @result_third = query_third
   end
 
+  def term_frequency
+    base
+  end
+
+  def inverse_document_frequency
+    base
+  end
+
   def vetorial
   end
 
@@ -28,7 +36,7 @@ class AppController < ApplicationController
       :D5 => "qual o melhor algoritmo para recuperação de dados?",
       :D6 => "o modelo vetorial é um modelo usado em sistemas de recuperação de informação",
       :D7 => "os dados manipulados por bancos de dados são estáticos",
-      :D8 => "o que se estuda em projeto e análise de algoritmos e estrutura de dad"
+      :D8 => "o que se estuda em projeto e análise de algoritmos e estrutura de dados"
     }
 
     @vocabulary = Vocabulary.new(@documents)

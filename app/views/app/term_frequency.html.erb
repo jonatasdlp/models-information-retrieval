@@ -1,0 +1,30 @@
+<div class="span12">
+  <div class="well well-small">
+    <h3><i class="icon-align-justify"></i> <%= t('term_frequency') %></h3>
+  </div>
+  <table class="table table-bordered">
+    <tr>
+      <td style="text-align:center"></td>
+      <td style="text-align:center"><h4><%= t('terms') %></h4></td>
+      <td style="text-align:center"><h4><i>tf<small> <i>i , </i>d1</small> </i></h4></td>
+      <td style="text-align:center"><h4><i>tf<small> <i>i , </i>d2</small> </i></h4></td>
+      <td style="text-align:center"><h4><i>tf<small> <i>i , </i>d3</small> </i></h4></td>
+      <td style="text-align:center"><h4><i>tf<small> <i>i , </i>d4</small> </i></h4></td>
+      <td style="text-align:center"><h4><i>tf<small> <i>i , </i>d5</small> </i></h4></td>
+      <td style="text-align:center"><h4><i>tf<small> <i>i , </i>d6</small> </i></h4></td>
+      <td style="text-align:center"><h4><i>tf<small> <i>i , </i>d7</small> </i></h4></td>
+      <td style="text-align:center"><h4><i>tf<small> <i>i , </i>d8</small> </i></h4></td>
+    </tr>
+    <% @vocabulary.inverted_index.each_with_index do |t, i| %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= t.word %></td>
+        <% @documents.each do |k, v| %>
+          <% h = Hash.new(0) %>
+          <% @vocabulary.get_words_by_document(v).each {|q| h.store(q, h[q]+1) if q == t.word} %>
+          <td><%= (h[t.word].to_i > 0) ? 1 + Math.log2(h[t.word].to_i) : 0  %></td>
+        <% end %>
+    </tr>
+  <% end %>
+  </table>
+</div>

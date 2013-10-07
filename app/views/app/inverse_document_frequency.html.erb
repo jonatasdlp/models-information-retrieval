@@ -1,0 +1,27 @@
+<div class="span12">
+  <div class="well well-small">
+    <h3><i class="icon-align-justify"></i> <%= t('inverse_document_frequency') %></h3>
+  </div>
+  <table class="table table-bordered">
+    <tr>
+      <td style="text-align:center"></td>
+      <td style="text-align:center"><h4><%= t('terms') %></h4></td>
+      <td style="text-align:center"><h4><i>n<small> <i>i</i></small></i></h4></td>
+      <td style="text-align:center"><h4><i> idf = log2(N/n i) </i></h4></td>
+    </tr>
+    <% @vocabulary.inverted_index.each_with_index do |t, i| %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= t.word %></td>
+        <% cont = 0 %>
+        <% cont_local = 0 %>
+        <% @documents.each do |k, v| %>
+          <% @vocabulary.get_words_by_document(v).include?(t.word) ? cont += 1 : cont %>
+          <% @vocabulary.get_words_by_document(v).map{|e| cont_local += 1 if e == t.word} %>
+        <% end %>
+        <td><%= cont %></td>
+        <td><%= Math.log2(cont_local.to_f/cont.to_f) %></td>
+      </tr>
+  <% end %>
+  </table>
+</div>

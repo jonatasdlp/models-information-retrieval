@@ -5,6 +5,8 @@ ModelsInformationRetrieval::Application.routes.draw do
     collection do
       get :boolean
       get :vetorial
+      get :term_frequency
+      get :inverse_document_frequency
     end
   end
   
