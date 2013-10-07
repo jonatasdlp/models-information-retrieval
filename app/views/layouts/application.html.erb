@@ -55,9 +55,9 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to "/path2"  do %>
+                <a href="#about" role="button" data-toggle="modal">
                   <i class="icon-info-sign"></i> <%= t('about') %>
-                <% end %>  
+                </a>
               </li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -89,7 +89,7 @@
       <footer>
         <p>&copy; Jônatas - PUC MINAS - 2013</p>
       </footer>
-
+      <%= render partial: "app/modal" %>
     </div> <!-- /container -->
 
   </body>
