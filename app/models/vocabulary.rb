@@ -58,8 +58,6 @@ class Vocabulary
 		full_index
 	end
  
-	private
- 
 	def get_words
 		terms = []
 		@documents.each do |key, value|

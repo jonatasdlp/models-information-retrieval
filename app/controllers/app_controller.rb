@@ -9,7 +9,9 @@ class AppController < ApplicationController
 
   def boolean
     base
-
+    @result_first = query_first
+    @result_second = query_second
+    @result_third = query_third
   end
 
   def vetorial
@@ -31,4 +33,35 @@ class AppController < ApplicationController
 
     @vocabulary = Vocabulary.new(@documents)
   end
+
+  def query_first
+    base
+    result = []
+    @documents.each do |k, v|
+      status = @vocabulary.get_words_by_document(v.to_s).include?("recuperacao") && (@vocabulary.get_words_by_document(v.to_s).include?("informacao") || !@vocabulary.get_words_by_document(v.to_s).include?("dados") )
+      result.push({document: k, presence: status})
+    end
+    result
+  end
+
+  def query_second
+    base
+    result = []
+    @documents.each do |k, v|
+      status = (@vocabulary.get_words_by_document(v.to_s).include?("banco") && @vocabulary.get_words_by_document(v.to_s).include?("dado")) || @vocabulary.get_words_by_document(v.to_s).include?("informacao") 
+      result.push({document: k, presence: status})
+    end
+    result
+  end
+
+  def query_third
+    base
+    result = []
+    @documents.each do |k, v|
+      status = @vocabulary.get_words_by_document(v.to_s).include?("algoritmo") && !@vocabulary.get_words_by_document(v.to_s).include?("sistema")
+      result.push({document: k, presence: status})
+    end
+    result
+  end
+
 end

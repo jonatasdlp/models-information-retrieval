@@ -2,5 +2,76 @@
   <div class="well well-small">
     <h3><%= t('search_boolean') %></h3>
   </div>
-    
+  <table class="table table-hover">
+    <tr class="success">
+      <td></td>
+      <td style="width:30%;text-align:center"><h4>recuperação AND</h4></td>
+      <td style="width:30%;text-align:center"><h4>( informação OR</h4></td>
+      <td style="width:30%;text-align:center"><h4>NOT dados )</h4></td>
+    </tr>
+    <% @documents.each do |k, v| %>
+      <tr>
+        <td><h5><%= k %></h5></td>
+        <td style="text-align:center"><%= @vocabulary.get_words_by_document(v.to_s).include?("recuperacao") %></td>
+        <td style="text-align:center"><%= @vocabulary.get_words_by_document(v.to_s).include?("informacao") %></td>
+        <td style="text-align:center"><%= !@vocabulary.get_words_by_document(v.to_s).include?("dados") %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="well well-small" >
+    <h5>Documents =>
+    <% @result_first.each do |r| %>
+      <%= r[:document] if r[:presence]  %>
+    <% end %>
+    </h5>
+  </div>
+  <hr />
+
+  <table class="table table-hover">
+    <tr class="success">
+      <td></td>
+      <td style="width:30%;text-align:center"><h4>(banco AND</h4></td>
+      <td style="width:30%;text-align:center"><h4>dados)</h4></td>
+      <td style="width:30%;text-align:center"><h4>OR informação</h4></td>
+    </tr>
+    <% @documents.each do |k, v| %>
+      <tr>
+        <td><h5><%= k %></h5></td>
+        <td style="text-align:center"><%= @vocabulary.get_words_by_document(v.to_s).include?("banco") %></td>
+        <td style="text-align:center"><%= @vocabulary.get_words_by_document(v.to_s).include?("dados") %></td>
+        <td style="text-align:center"><%= @vocabulary.get_words_by_document(v.to_s).include?("informacao") %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="well well-small" >
+    <h5>Documents =>
+    <% @result_second.each do |r| %>
+      <%= r[:document] if r[:presence]  %>
+    <% end %>
+    </h5>
+  </div>
+  <hr />
+
+  <table class="table table-hover">
+    <tr class="success">
+      <td></td>
+      <td style="width:45%;text-align:center"><h4>algoritmo AND</h4></td>
+      <td style="width:45%;text-align:center"><h4>NOT sistema</h4></td>
+    </tr>
+    <% @documents.each do |k, v| %>
+      <tr>
+        <td><h5><%= k %></h5></td>
+        <td style="text-align:center"><%= @vocabulary.get_words_by_document(v.to_s).include?("algoritmo") %></td>
+        <td style="text-align:center"><%= !@vocabulary.get_words_by_document(v.to_s).include?("sistema") %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="well well-small" >
+    <h5>Documents =>
+    <% @result_third.each do |r| %>
+      <%= r[:document] if r[:presence]  %>
+    <% end %>
+    </h5>
+  </div>
+  <hr />
 </div>

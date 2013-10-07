@@ -132,7 +132,7 @@ v = Vocabulary.new(documents)
 #puts v.build_vocabulary
  
 documents.each do |k, x|
-#  puts v.get_words_by_documents(x.to_s).include?("recuperacao") && (v.get_words_by_document(x.to_s).include?("informacao") || !v.get_words_by_document(x.to_s).include?("dados") )
+  puts v.get_words_by_document(x.to_s).include?("recuperacao") && (v.get_words_by_document(x.to_s).include?("informacao") || !v.get_words_by_document(x.to_s).include?("dados") )
 end
 
 
