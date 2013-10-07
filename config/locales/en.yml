@@ -26,7 +26,7 @@ en:
   models_information_retrieval: "Models Information Retrieval"
   options: "Options"
   search_boolean: "Boolean Model"
-  search_vetorial: "Vetorial Model"
+  search_vetorial: "Vector Model"
   index: "Index"
   terms: "Terms"
   ocurrency: "Ocurrency"
