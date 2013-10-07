@@ -73,13 +73,13 @@ class Vocabulary
 	end
  
 	def get_words_by_document(document)
-		terms = []
+	  terms = []
 		document.to_s.split(/,|\?|\s/).each do |w|
-			term = w.latinize
-			terms.push(terms)
-		end
+		  term = w.latinize
+			terms.push(term) if term != ""
+		end 
 		terms
-	end 
+  end
  
 	def process_vocabulary
 		index = Hash.new

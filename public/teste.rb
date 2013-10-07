@@ -1,5 +1,5 @@
 # encoding: utf-8
-
+require 'vidibus/core_extensions'
 require 'nokogiri'
 require 'action_view'
 require 'sanitize'
@@ -81,7 +81,6 @@ class Vocabulary
 		full_index
 	end
  
-	private
  
 	def get_words
 		terms = []
@@ -96,11 +95,11 @@ class Vocabulary
 	end
  
 	def get_words_by_document(document)
-		terms = []
+    terms = []
 		document.to_s.split(/,|\?|\s/).each do |w|
-			term = w.latinize
-			terms.push(terms)
-		end
+		  term = w.latinize
+			terms.push(term) if term != ""
+		end 
 		terms
 	end 
  
@@ -132,11 +131,15 @@ documents = {
 v = Vocabulary.new(documents)
 #puts v.build_vocabulary
  
- 
+documents.each do |k, x|
+#  puts v.get_words_by_documents(x.to_s).include?("recuperacao") && (v.get_words_by_document(x.to_s).include?("informacao") || !v.get_words_by_document(x.to_s).include?("dados") )
+end
+
+
 #hash = Hash[).map.with_index.to_a]
 #puts documents[:D1].to_s.split(/,|\?|\s/)
  
 #puts v.index_frequency("o")
-v.inverted_index.each do |t|
- puts t.word.to_s + " " + t.location.to_s
-end
+#v.inverted_index.each do |t|
+# puts t.word.to_s + " " + t.location.to_s
+#end
