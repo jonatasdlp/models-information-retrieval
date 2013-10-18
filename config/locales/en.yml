@@ -34,4 +34,4 @@ en:
   inverted_list: "Inverted List"
   term_frequency: "Term Frequency"
   inverse_document_frequency: "Inverse Document Frequency"
-
+  occurrence: "Occurrence"

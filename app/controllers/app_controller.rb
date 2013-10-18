@@ -2,8 +2,12 @@ class AppController < ApplicationController
   def index
     base
   end
-  
-  def show
+
+  def inverted_list
+    base
+  end
+
+  def vocabulary
     base
   end
 

@@ -15,13 +15,13 @@
       <td style="text-align:center"><h4><i>tf<small> <i>i , </i>d7</small> </i></h4></td>
       <td style="text-align:center"><h4><i>tf<small> <i>i , </i>d8</small> </i></h4></td>
     </tr>
-    <% @vocabulary.inverted_index.each_with_index do |t, i| %>
+    <% vocabulary.inverted_index.each_with_index do |t, i| %>
       <tr>
         <td><%= i+1 %></td>
         <td><%= t.word %></td>
-        <% @documents.each do |k, v| %>
+        <% documents.each do |k, v| %>
           <% h = Hash.new(0) %>
-          <% @vocabulary.get_words_by_document(v).each {|q| h.store(q, h[q]+1) if q == t.word} %>
+          <% vocabulary.get_words_by_document(v).each {|q| h.store(q, h[q]+1) if q == t.word} %>
           <td><%= (h[t.word].to_i > 0) ? 1 + Math.log2(h[t.word].to_i) : 0  %></td>
         <% end %>
     </tr>

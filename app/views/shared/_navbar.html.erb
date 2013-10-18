@@ -1,0 +1,27 @@
+<div class="navbar navbar-fluid-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#"><%= t('models_information_retrieval') %></a>
+      <div class="container-fluid nav-collapse">
+        <ul class="nav">
+          <li>
+          <%= link_to "/" do %>
+            <i class="icon-home"></i> <%= t('home') %>
+      <% end %>
+          </li>
+          <li>
+          <a href="#about" role="button" data-toggle="modal">
+            <i class="icon-info-sign"></i> <%= t('about') %>
+        </a>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
