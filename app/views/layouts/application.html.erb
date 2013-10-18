@@ -71,8 +71,8 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header"><%= t('options') %></li>
-              <li><%= link_to t('vocabulary'), app_path(2), id: 'voc' %></li>
-              <li><%= link_to t('inverted_list'), app_path(1), id: 'inv'  %></li>
+              <li><%= link_to t('vocabulary'), app_path(2), class: "action" %></li>
+              <li><%= link_to t('inverted_list'), app_path(1), class: "action"  %></li>
               <li><%= link_to t('search_boolean'), boolean_app_index_path %></li>
               <li><%= link_to t('term_frequency'), term_frequency_app_index_path  %></li>
               <li><%= link_to t('inverse_document_frequency'), inverse_document_frequency_app_index_path  %></li>

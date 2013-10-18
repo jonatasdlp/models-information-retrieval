@@ -1,11 +1,5 @@
 $(function(){
-  $("#voc").click(function(){
-    $("#imgl").show();
-    $(".span12").css("display","none");
+  $(".action").click(function(){
+    $("img").css("display","block");
   });
-
-  $("#inv").click(function(){
-    $("#imgl").show();
-    $(".span12").css("display","none");
-  });
-})
+});
