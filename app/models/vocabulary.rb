@@ -1,3 +1,5 @@
+# Jonatas Santos
+
 require 'vidibus/core_extensions'
 require 'nokogiri'
 require 'action_view'
