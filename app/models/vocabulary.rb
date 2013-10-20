@@ -132,4 +132,16 @@ class Vocabulary
     end
     values
   end
+
+  def occurrence_in_documents(word)
+    hash = Hash.new(0)
+    @documents.each do |k, v|
+      self.get_words_by_document(v).uniq.each { |q| hash.store(q, hash[q] + 1) if q == word }
+    end
+    hash[word].to_i
+  end
+
+  def self.probabilistic(count, tf)
+    Math.log((count - tf + 0.5)/(tf + 0.5).to_f).round(3)
+  end
 end
