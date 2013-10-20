@@ -5,8 +5,12 @@ ModelsInformationRetrieval::Application.routes.draw do
     collection do
       get :boolean
       get :vetorial
+      get :inverted_list
+      get :vocabulary
       get :term_frequency
       get :inverse_document_frequency
+      get :vector_sim
+      get :probabilistic
     end
   end
   

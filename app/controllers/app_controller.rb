@@ -4,8 +4,12 @@ class AppController < ApplicationController
   def index
     base
   end
-  
-  def show
+
+  def inverted_list
+    base
+  end
+
+  def vocabulary
     base
   end
 
@@ -25,6 +29,17 @@ class AppController < ApplicationController
   end
 
   def vetorial
+    base
+  end
+
+  def vector_sim
+    base
+    @queries = {q1: "recuperacao de informacao", q2: "banco de dados", q3: "projeto de algoritmo"}
+  end
+
+  def probabilistic
+    base
+    @queries = {q1: "recuperacao de informacao", q2: "banco de dados", q3: "projeto de algoritmo"}
   end
 
   private

@@ -1,3 +1,5 @@
+# Jonatas Santos
+
 require 'nokogiri'
 require 'action_view'
 require 'sanitize'

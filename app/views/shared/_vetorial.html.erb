@@ -1,0 +1,28 @@
+<div class="span12">
+  <div class="well well-small">
+    <h3><i class="icon-align-justify"></i> <%= t('vector_model_matrix') %> (TFxIDF)</h3>
+  </div>
+  <table class="table table-bordered">
+    <tr class="success">
+      <td style="text-align:center"></td>
+      <td style="text-align:center"><h4><%= t('terms') %></h4></td>
+      <td style="text-align:center">D1</td>
+      <td style="text-align:center">D2</td>
+      <td style="text-align:center">D3</td>
+      <td style="text-align:center">D4</td>
+      <td style="text-align:center">D5</td>
+      <td style="text-align:center">D6</td>
+      <td style="text-align:center">D7</td>
+      <td style="text-align:center">D8</td>
+    </tr>
+    <% vocabulary.inverted_index.each_with_index do |t, i| %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= t.word %></td>
+        <% vocabulary.calc_tf(t.word).each do |p| %>
+          <td><%= (p * vocabulary.calc_idf(t.word)).round(4) %></td>
+        <% end %>
+    </tr>
+  <% end %>
+  </table>
+</div>

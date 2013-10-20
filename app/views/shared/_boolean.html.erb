@@ -9,18 +9,18 @@
       <td style="width:30%;text-align:center"><h4>( informação OR</h4></td>
       <td style="width:30%;text-align:center"><h4>NOT dados )</h4></td>
     </tr>
-    <% @documents.each do |k, v| %>
+    <% documents.each do |k, v| %>
       <tr>
         <td><h5><%= k %></h5></td>
-        <td style="text-align:center"><%= @vocabulary.get_words_by_document(v.to_s).include?("recuperacao") %></td>
-        <td style="text-align:center"><%= @vocabulary.get_words_by_document(v.to_s).include?("informacao") %></td>
-        <td style="text-align:center"><%= !@vocabulary.get_words_by_document(v.to_s).include?("dados") %></td>
+        <td style="text-align:center"><%= vocabulary.get_words_by_document(v.to_s).include?("recuperacao") %></td>
+        <td style="text-align:center"><%= vocabulary.get_words_by_document(v.to_s).include?("informacao") %></td>
+        <td style="text-align:center"><%= !vocabulary.get_words_by_document(v.to_s).include?("dados") %></td>
       </tr>
     <% end %>
   </table>
   <div class="well well-small" >
     <h5>Documents =>
-    <% @result_first.each do |r| %>
+    <% rf.each do |r| %>
       <%= r[:document] if r[:presence]  %>
     <% end %>
     </h5>
@@ -34,18 +34,18 @@
       <td style="width:30%;text-align:center"><h4>dados)</h4></td>
       <td style="width:30%;text-align:center"><h4>OR informação</h4></td>
     </tr>
-    <% @documents.each do |k, v| %>
+    <% documents.each do |k, v| %>
       <tr>
         <td><h5><%= k %></h5></td>
-        <td style="text-align:center"><%= @vocabulary.get_words_by_document(v.to_s).include?("banco") %></td>
-        <td style="text-align:center"><%= @vocabulary.get_words_by_document(v.to_s).include?("dados") %></td>
-        <td style="text-align:center"><%= @vocabulary.get_words_by_document(v.to_s).include?("informacao") %></td>
+        <td style="text-align:center"><%= vocabulary.get_words_by_document(v.to_s).include?("banco") %></td>
+        <td style="text-align:center"><%= vocabulary.get_words_by_document(v.to_s).include?("dados") %></td>
+        <td style="text-align:center"><%= vocabulary.get_words_by_document(v.to_s).include?("informacao") %></td>
       </tr>
     <% end %>
   </table>
   <div class="well well-small" >
     <h5>Documents =>
-    <% @result_second.each do |r| %>
+    <% rs.each do |r| %>
       <%= r[:document] if r[:presence]  %>
     <% end %>
     </h5>
@@ -58,17 +58,17 @@
       <td style="width:45%;text-align:center"><h4>algoritmo AND</h4></td>
       <td style="width:45%;text-align:center"><h4>NOT sistema</h4></td>
     </tr>
-    <% @documents.each do |k, v| %>
+    <% documents.each do |k, v| %>
       <tr>
         <td><h5><%= k %></h5></td>
-        <td style="text-align:center"><%= @vocabulary.get_words_by_document(v.to_s).include?("algoritmo") %></td>
-        <td style="text-align:center"><%= !@vocabulary.get_words_by_document(v.to_s).include?("sistema") %></td>
+        <td style="text-align:center"><%= vocabulary.get_words_by_document(v.to_s).include?("algoritmo") %></td>
+        <td style="text-align:center"><%= !vocabulary.get_words_by_document(v.to_s).include?("sistema") %></td>
       </tr>
     <% end %>
   </table>
   <div class="well well-small" >
     <h5>Documents =>
-    <% @result_third.each do |r| %>
+    <% rt.each do |r| %>
       <%= r[:document] if r[:presence]  %>
     <% end %>
     </h5>

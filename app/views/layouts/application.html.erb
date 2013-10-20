@@ -37,48 +37,11 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-
-    <div class="navbar navbar-fluid-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#"><%= t('models_information_retrieval') %></a>
-          <div class="container-fluid nav-collapse">
-            <ul class="nav">
-              <li>
-                <%= link_to "/" do %>
-                  <i class="icon-home"></i> <%= t('home') %>
-                <% end %>
-              </li>
-              <li>
-                <a href="#about" role="button" data-toggle="modal">
-                  <i class="icon-info-sign"></i> <%= t('about') %>
-                </a>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
+    <%= render partial: 'shared/navbar' %>
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header"><%= t('options') %></li>
-              <li><%= link_to t('vocabulary'), app_path(2), id: 'voc' %></li>
-              <li><%= link_to t('inverted_list'), app_path(1), id: 'inv'  %></li>
-              <li><%= link_to t('search_boolean'), boolean_app_index_path %></li>
-              <li><%= link_to t('term_frequency'), term_frequency_app_index_path  %></li>
-              <li><%= link_to t('inverse_document_frequency'), inverse_document_frequency_app_index_path  %></li>
-              <li><%= link_to t('search_vetorial'), vetorial_app_index_path  %></li>
-            </ul>
-          </div><!--/.well -->
+          <%= render partial: 'shared/sidebar' %>
         </div><!--/span-->
         <div class="span9">
           <%= bootstrap_flash %>
