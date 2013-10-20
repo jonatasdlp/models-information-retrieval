@@ -20,7 +20,7 @@
           <% vocabulary.get_words_by_document(v).map{|e| cont_local += 1 if e == t.word} %>
         <% end %>
         <td><%= cont %></td>
-        <td><%= Math.log2(cont_local.to_f/cont.to_f) %></td>
+        <td><%= Math.log2(documents.count/cont.to_f) %></td>
       </tr>
   <% end %>
   </table>
