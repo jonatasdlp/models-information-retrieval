@@ -46,18 +46,15 @@
         <td style="text-align:center"><h4>Sim<small>q,D8</small></h4></td>
       </tr>
       <tr>
-      <% documents.each_with_index do |i, index| %>
+      <% documents.each do |kd, vd| %>
         <td>
-          <% val1 = 0 %>
-          <% val_t = 1 %>
-          <% val_q = 1 %>
-          <% vocabulary.calc_similarity(v).each do |key, value|  %>
-            <% val1 += (value[index].round(3) * value[8]).round(3) %>
-            <% val_t += (value[index].round(3)**2) %>
-            <% val_q += (value[8].round(3)**2) %>
+          <% value = 0 %>
+          <% v.split(' ').each do |term| %>
+            <% if vocabulary.get_words_by_document(vd).include?(term) %>
+              <% value += Vocabulary.probabilistic(documents.count, vocabulary.occurrence_in_documents(term)) %>
+            <% end %>
           <% end %>
-          <% tl = (val1/(Math.sqrt(val_t) * Math.sqrt(val_q))).round(3) %>
-          <%= tl %>
+          <%= value.round(4) %>
         </td>
       <% end %>
       </tr>
