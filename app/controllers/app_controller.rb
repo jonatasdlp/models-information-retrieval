@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #encoding: utf-8
+=======
+# encoding: utf-8
+>>>>>>> dev
 
 class AppController < ApplicationController
   def index
