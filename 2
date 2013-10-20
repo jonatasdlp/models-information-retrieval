@@ -98,6 +98,7 @@ class Vocabulary
     @documents.each do |k, v|
       self.get_words_by_document(v).include?(word) ? cont += 1 : cont
     end
+
     cont
   end
 
@@ -106,30 +107,10 @@ class Vocabulary
   end
 
   def calc_tf(word)
-    values = []
     @documents.each do |k, v|
       hash = Hash.new(0)
       self.get_words_by_document(v).each { |q| hash.store(q, hash[q] + 1) if q == word }
-      values.push((hash[word].to_i > 0) ? (1 + Math.log2(hash[word].to_i)) : 0)
+      (hash[word].to_i > 0) ? (1 + Math.log2(hash[word].to_i)) : 0
     end
-    values
-  end
-
-  def calc_idf_term(doc, term)
-    cont = 0
-    doc.split(' ').map{|c| cont += 1 if c == term}
-    ((1 + Math.log2(cont))*self.calc_idf(term)).round(4)
-  end
-
-  def calc_similarity(v)
-    values = {}
-    v.split(' ').each do |i|
-      values[i] = values[i] = []
-      self.calc_tf(i).each do |p|
-        values[i] << (tf_t = (p * self.calc_idf(i)).round(4))
-      end
-      values[i] << (tf_q = calc_idf_term(v, i))
-    end
-    values
   end
 end

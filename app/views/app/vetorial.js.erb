@@ -1,2 +1,2 @@
-$("#content-page").html("<%= j (render partial: 'shared/vetorial') %>");
+$("#content-page").html("<%= j (render partial: 'shared/vetorial', locals: {vocabulary: @vocabulary, documents: @documents}) %>");
 

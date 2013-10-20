@@ -1,0 +1,73 @@
+<div class="span12">
+  <div class="well well-small">
+    <h3><i class="icon-align-justify"></i> <%= t('vector_model_similarity') %></h3>
+  </div>
+  <% queries.each do |k, v| %>
+    <div class="well well-small" style="margin-bottom:2px;">
+      <h4>TF x IDF</h4>
+    </div>
+    <table class="table table-bordered">
+      <tr class="success">
+        <td style="text-align:center"><h4><%= t('terms') %></h4></td>
+        <td style="text-align:center">D1</td>
+        <td style="text-align:center">D2</td>
+        <td style="text-align:center">D3</td>
+        <td style="text-align:center">D4</td>
+        <td style="text-align:center">D5</td>
+        <td style="text-align:center">D6</td>
+        <td style="text-align:center">D7</td>
+        <td style="text-align:center">D8</td>
+        <td style="text-align:center">q</td>
+      </tr>
+      <% v.split(' ').each_with_index do |i, index| %>
+        <tr>
+          <td><%= i %></td>
+          <% vocabulary.calc_tf(i).each do |p| %>
+            <td><%= (p * vocabulary.calc_idf(i)).round(4) %></td>
+          <% end %>
+          <% cont = 0 %>
+          <% v.split(' ').map{|c| cont += 1 if c == i} %>
+          <td><%= ((1 + Math.log2(cont))*vocabulary.calc_idf(i)).round(4) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <div class="well well-small" style="margin-bottom:2px;">
+      <h4><%= t('similarity') %></h4>
+    </div>
+    <table class="table table-bordered">
+      <tr class="success">
+        <td style="text-align:center"><h4>Sim<small>q,D1</small></h4></td>
+        <td style="text-align:center"><h4>Sim<small>q,D2</small></h4></td>
+        <td style="text-align:center"><h4>Sim<small>q,D3</small></h4></td>
+        <td style="text-align:center"><h4>Sim<small>q,D4</small></h4></td>
+        <td style="text-align:center"><h4>Sim<small>q,D5</small></h4></td>
+        <td style="text-align:center"><h4>Sim<small>q,D6</small></h4></td>
+        <td style="text-align:center"><h4>Sim<small>q,D7</small></h4></td>
+        <td style="text-align:center"><h4>Sim<small>q,D8</small></h4></td>
+      </tr>
+      <tr>
+      <% results = {} %>
+      <% documents.each_with_index do |i, index| %>
+        <td>
+          <% val1 = 0 %>
+          <% val_t = 1 %>
+          <% val_q = 1 %>
+          <% vocabulary.calc_similarity(v).each do |key, value|  %>
+            <% val1 += (value[index].round(3) * value[8]).round(3) %>
+            <% val_t += (value[index].round(3)**2) %>
+            <% val_q += (value[8].round(3)**2) %>
+          <% end %>
+          <% results[i] || results[i] = []  %>
+          <% tl = (val1/(Math.sqrt(val_t) * Math.sqrt(val_q))).round(3) %>
+          <%= tl %>
+        </td>
+      <% end %>
+      </tr>
+    </table>
+    <div class="well well-small">
+      <h5>=> Query: <%= v %>  </h5>
+    </div>
+    <% results = {} %>
+    <hr class="soften">
+  <% end %>
+</div>

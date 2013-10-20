@@ -19,10 +19,8 @@
       <tr>
         <td><%= i+1 %></td>
         <td><%= t.word %></td>
-        <% documents.each do |k, v| %>
-          <% h = Hash.new(0) %>
-          <% vocabulary.get_words_by_document(v).each {|q| h.store(q, h[q]+1) if q == t.word} %>
-          <td><%= (h[t.word].to_i > 0) ? 1 + Math.log2(h[t.word].to_i) : 0  %></td>
+        <% vocabulary.calc_tf(t.word).each do |p| %>
+          <td><%= p %></td>
         <% end %>
     </tr>
   <% end %>

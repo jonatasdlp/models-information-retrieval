@@ -9,6 +9,8 @@ ModelsInformationRetrieval::Application.routes.draw do
       get :vocabulary
       get :term_frequency
       get :inverse_document_frequency
+      get :vector_sim
+      get :probabilistic
     end
   end
   
