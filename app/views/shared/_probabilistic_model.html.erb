@@ -4,38 +4,11 @@
   </div>
   <% queries.each do |k, v| %>
     <div class="well well-small" style="margin-bottom:2px;">
-      <h4>TF x IDF</h4>
-    </div>
-    <table class="table table-bordered">
-      <tr class="success">
-        <td style="text-align:center"><h4><%= t('terms') %></h4></td>
-        <td style="text-align:center">D1</td>
-        <td style="text-align:center">D2</td>
-        <td style="text-align:center">D3</td>
-        <td style="text-align:center">D4</td>
-        <td style="text-align:center">D5</td>
-        <td style="text-align:center">D6</td>
-        <td style="text-align:center">D7</td>
-        <td style="text-align:center">D8</td>
-        <td style="text-align:center">q</td>
-      </tr>
-      <% v.split(' ').each_with_index do |i, index| %>
-        <tr>
-          <td><%= i %></td>
-          <% vocabulary.calc_tf(i).each do |p| %>
-            <td><%= (p * vocabulary.calc_idf(i)).round(4) %></td>
-          <% end %>
-          <% cont = 0 %>
-          <% v.split(' ').map{|c| cont += 1 if c == i} %>
-          <td><%= ((1 + Math.log2(cont))*vocabulary.calc_idf(i)).round(4) %></td>
-        </tr>
-      <% end %>
-    </table>
-    <div class="well well-small" style="margin-bottom:2px;">
       <h4><%= t('similarity') %></h4>
     </div>
     <table class="table table-bordered">
       <tr class="success">
+        <td><b></b></td>
         <td style="text-align:center"><h4>Sim<small>q,D1</small></h4></td>
         <td style="text-align:center"><h4>Sim<small>q,D2</small></h4></td>
         <td style="text-align:center"><h4>Sim<small>q,D3</small></h4></td>
@@ -46,12 +19,13 @@
         <td style="text-align:center"><h4>Sim<small>q,D8</small></h4></td>
       </tr>
       <tr>
+        <td>1ª</td>
       <% documents.each do |kd, vd| %>
         <td>
           <% value = 0 %>
           <% v.split(' ').each do |term| %>
             <% if vocabulary.get_words_by_document(vd).include?(term) %>
-              <% value += Vocabulary.probabilistic(documents.count, vocabulary.occurrence_in_documents(term)) %>
+              <% value = value + Vocabulary.probabilistic(documents.count, vocabulary.occurrence_in_document(term, kd)) %>
             <% end %>
           <% end %>
           <%= value.round(4) %>
@@ -60,7 +34,10 @@
       </tr>
     </table>
     <div class="well well-small">
-      <h5>=> Query: <%= v %>  </h5>
+      <h5>=> Query: <%= v %>  
+        <br />
+         <%= Vocabulary.probabilistic_new(v, documents) %>
+      </h5>
     </div>
     <hr class="soften">
   <% end %>

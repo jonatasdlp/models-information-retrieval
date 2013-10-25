@@ -5,6 +5,8 @@
 >>>>>>> dev
 
 class AppController < ApplicationController
+
+
   def index
     base
   end

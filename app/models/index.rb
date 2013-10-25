@@ -13,7 +13,7 @@ class Index
     @word = word
     @location = location
   end
- 
+  
   def ==(other)
     self.class === other and
       other.word == @word and
