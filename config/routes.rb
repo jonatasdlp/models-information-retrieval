@@ -11,6 +11,7 @@ ModelsInformationRetrieval::Application.routes.draw do
       get :inverse_document_frequency
       get :vector_sim
       get :probabilistic
+      get :bm_25
     end
   end
   

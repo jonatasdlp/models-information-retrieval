@@ -8,10 +8,16 @@
 	include ActionView::Helpers::SanitizeHelper
 
 	class Vocabulary
+
+		attr_accessor :K, :b, :N, :avg
 	 
 		def initialize(documents)
 			@documents = documents
 			@words = get_words
+			@k = 1
+			@b = 0.75
+			@N = 8 # All documents
+			@avg = 10.6 # Avg for all documents length
 		end
 	 
 		def build_vocabulary
