@@ -75,6 +75,7 @@ class Vocabulary
 		terms
 	end
  
+ 	# count document words
 	def get_words_by_document(document)
 	  terms = []
 		document.to_s.split(/,|\?|\s/).each do |w|
@@ -157,6 +158,7 @@ class Vocabulary
     values
   end
 
+  # generate hash
   def occurrence_in_documents(word)
     hash = Hash.new(0)
     @documents.each do |k, v|
@@ -204,18 +206,18 @@ class Vocabulary
   end
 
   def self.calc_term_bm(term, doc)
-  	k = 1
-		b = 0.75
-		avg =	10.875 # avg documents
-  	x = Vocabulary.count_words_in_document(doc, term) || 0
-  	l = Vocabulary.get_words_by_document(doc).count || 0
-  	((k + 1) * x) / (k * ((1 - b) + b * (l / avg)) + x)
+  	k = 1 # Constant
+		b = 0.75 # default
+		avg =	10.88 # avg documents
+  	x = Vocabulary.count_words_in_document(doc, term).to_i || 0
+  	l = Vocabulary.get_words_by_document(doc).count.to_i || 0
+  	((k+1)*x/(k*((1-b)+b*(l/avg))+x))
   end
 
-  def self.calc_sim_bm(term, doc)
+  def calc_sim_bm(term, doc)
 		n = 8 # all documents
 		z = Vocabulary.calc_term_bm(term,doc)
-  	x = Vocabulary.count_words_in_document(doc, term) || 0
-  	(z * Math.log((n - x.to_f + 0.5)/(x.to_f + 0.5)))
+  	x = term_document_count(term) || 0
+  	(z * Math.log10((n - x + 0.5)/(x + 0.5)))
   end
 end

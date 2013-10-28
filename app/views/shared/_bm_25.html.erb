@@ -94,7 +94,8 @@
             <tr>  
               <td><%= w %></td>
               <% @documents.each do |k, v| %>
-                <td><%= Vocabulary.calc_sim_bm(w,v).round(3) %></td>
+                <td><%= @vocabulary.calc_sim_bm(w,v).round(3) %>
+                </td>
               <% end %>
             </tr>
             <% end %>
@@ -128,9 +129,9 @@
               <td>
                 <% cont = 0 %>
                 <% v.split(' ').each do |q| %>
-                  <% cont += Vocabulary.calc_sim_bm(q, vd).round(3) %>
+                  <% cont += @vocabulary.calc_sim_bm(q,vd) %>
                 <% end %> 
-                <%= cont %>
+                <%= cont.round(3) %>
               </td>
             <% end %>
             </tr>
