@@ -14,10 +14,6 @@ class Vocabulary
 	def initialize(documents)
 		@documents = documents
 		@words = get_words
-		@k = 1
-		@b = 0.75
-		@N = 8 # All documents
-		@avg = 10.6 # Avg for all documents length
 	end
 
 
@@ -101,7 +97,8 @@ class Vocabulary
   	cont = 0
   	doc.to_s.split(/,|\?|\s/).each do |w|
 		  term = w.latinize
-			if (term != "") && (term == word)
+		  wr = word.latinize
+			if (term != "") && (term == wr)
 				cont += 1
 			end
 		end 
@@ -204,5 +201,21 @@ class Vocabulary
 	    end
     end
     cont
+  end
+
+  def self.calc_term_bm(term, doc)
+  	k = 1
+		b = 0.75
+		avg =	10.875 # avg documents
+  	x = Vocabulary.count_words_in_document(doc, term) || 0
+  	l = Vocabulary.get_words_by_document(doc).count || 0
+  	((k + 1) * x) / (k * ((1 - b) + b * (l / avg)) + x)
+  end
+
+  def self.calc_sim_bm(term, doc)
+		n = 8 # all documents
+		z = Vocabulary.calc_term_bm(term,doc)
+  	x = Vocabulary.count_words_in_document(doc, term) || 0
+  	(z * Math.log((n - x.to_f + 0.5)/(x.to_f + 0.5)))
   end
 end
