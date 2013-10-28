@@ -1,0 +1,5 @@
+$("#rank_terms").html("<%= j (render partial: 'shared/bm/ranking_terms', locals: {vocabulary: @vocabulary, documents: @documents, queries: @queries}) %>");
+$("#collapseFour").removeClass("collapse");
+$("#collapseFour").addClass("in");
+$("#collapseFour").addClass("collapse");
+$("#collapseFour").css("height","auto");

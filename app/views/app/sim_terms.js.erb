@@ -1,0 +1,5 @@
+$("#similarity_terms").html("<%= j (render partial: 'shared/bm/similarity_terms', locals: {vocabulary: @vocabulary, documents: @documents}) %>");
+$("#collapseTree").removeClass("collapse");
+$("#collapseTree").addClass("in");
+$("#collapseTree").addClass("collapse");
+$("#collapseTree").css("height","auto");

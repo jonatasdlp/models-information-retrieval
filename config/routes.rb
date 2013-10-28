@@ -12,6 +12,10 @@ ModelsInformationRetrieval::Application.routes.draw do
       get :vector_sim
       get :probabilistic
       get :bm_25
+      get :term_list
+      get :sim_terms
+      get :calc_terms
+      get :rank_terms
     end
   end
   
