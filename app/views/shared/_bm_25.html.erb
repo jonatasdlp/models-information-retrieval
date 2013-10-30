@@ -1,0 +1,60 @@
+<div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-controller="term_list" data-parent="#accordion2" href="#collapseOne">
+        <%= t('terms_list') %>
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner" id="terms_list" >
+        
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-controller="calc_terms" data-parent="#accordion2" href="#collapseTwo">
+        <%= t('calculate_terms') %>
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner" id="calc_terms" >
+        
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-controller="sim_terms" data-parent="#accordion2" href="#collapseTree">
+        <%= t('similarity_terms') %>
+      </a>
+    </div>
+    <div id="collapseTree" class="accordion-body collapse">
+      <div class="accordion-inner" id="similarity_terms" >
+        
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-controller="rank_terms" data-parent="#accordion2" href="#collapseFour">
+        <%= t('ranking_terms') %>
+      </a>
+    </div>
+    <div id="collapseFour" class="accordion-body collapse">
+      <div class="accordion-inner" id="rank_terms" >
+        
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(function(){
+    $(".accordion-toggle").click(function(){
+      var link = $(this).attr("data-controller");
+      $.get("/app/" + link, function(){});
+    });
+  });
+</script>
+
+

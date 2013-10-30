@@ -11,6 +11,11 @@ ModelsInformationRetrieval::Application.routes.draw do
       get :inverse_document_frequency
       get :vector_sim
       get :probabilistic
+      get :bm_25
+      get :term_list
+      get :sim_terms
+      get :calc_terms
+      get :rank_terms
     end
   end
   

@@ -44,6 +44,27 @@ class AppController < ApplicationController
     @queries = {q1: "recuperacao de informacao", q2: "banco de dados", q3: "projeto de algoritmo"}
   end
 
+  def bm_25
+    base
+    @queries = {q1: "recuperacao de informacao", q2: "banco de dados", q3: "projeto de algoritmo"}
+  end
+
+  def term_list
+    bm_25
+  end
+
+  def sim_terms
+    bm_25
+  end
+
+  def calc_terms
+    bm_25
+  end
+
+  def rank_terms
+    bm_25
+  end
+
   private
 
   def base

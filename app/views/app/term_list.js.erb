@@ -1,0 +1,5 @@
+$("#terms_list").html("<%= j (render partial: 'shared/bm/term_list', locals: {vocabulary: @vocabulary, documents: @documents}) %>");
+$("#collapseOne").removeClass("collapse");
+$("#collapseOne").addClass("in");
+$("#collapseOne").addClass("collapse");
+$("#collapseOne").css("height","auto");

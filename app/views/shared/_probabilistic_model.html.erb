@@ -31,6 +31,8 @@
           <% v.split(' ').each do |term| %>
             <% if vocabulary.get_words_by_document(vd).include?(term) %>
               <% value = value + Vocabulary.probabilistic(documents.count, vocabulary.occurrence_in_document(term, kd)) %>
+              <!-- <b><%#=# vocabulary.occurrence_in_document(term, kd)) %></b>
+              <b><%#=# documents.count %></b> -->
             <% end %>
           <% end %>
           <%= value.round(4) %>

@@ -1,0 +1,29 @@
+<% queries.each do |k, v| %>
+  <table class="table table-bordered">
+    <tr class="success">
+      <td style="text-align:center"><h4><small>D1</small></h4></td>
+      <td style="text-align:center"><h4><small>D2</small></h4></td>
+      <td style="text-align:center"><h4><small>D3</small></h4></td>
+      <td style="text-align:center"><h4><small>D4</small></h4></td>
+      <td style="text-align:center"><h4><small>D5</small></h4></td>
+      <td style="text-align:center"><h4><small>D6</small></h4></td>
+      <td style="text-align:center"><h4><small>D7</small></h4></td>
+      <td style="text-align:center"><h4><small>D8</small></h4></td>
+    </tr>
+    <tr>
+      <% documents.each do |kd, vd| %>
+      <td>
+        <% cont = 0 %>
+        <% v.split(' ').each do |q| %>
+        <% cont += vocabulary.calc_sim_bm(q,vd) %>
+        <% end %> 
+        <%= cont.round(3) %>
+      </td>
+      <% end %>
+    </tr>
+  </table>
+  <div class="well well-small">
+    <h5>=> Query: <%= v %> </h5>
+  </div>
+  <hr class="soften">
+<% end %>
