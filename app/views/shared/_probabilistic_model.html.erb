@@ -2,10 +2,40 @@
   <div class="well well-small">
     <h3><i class="icon-align-justify"></i> <%= t('probabilistic_model_similarity') %></h3>
   </div>
+  <% cont = 0 %>
   <% queries.each do |k, v| %>
     <div class="well well-small" style="margin-bottom:2px;">
       <h4><%= t('similarity') %></h4>
     </div>
+    <table class="table table-bordered">
+      <tr class="success">
+        <td><b>DOC</b></td>
+        <% v.split(' ').each do |query| %>
+          <td colspan="2" style="text-align:center"><b><%= query %></b></td>
+        <% end %>
+      </tr>
+      <tr class="info">
+        <td></td>
+        <td><b>df</b></td>
+        <td><b>weight</b></td>
+        <td><b>df</b></td>
+        <td><b>weight</b></td>
+        <td><b>df</b></td>
+        <td><b>weight</b></td>
+      </tr>
+      <% documents.each do |ky, vl| %>
+        <tr>
+          <td><%= ky %></td>
+          <% 3.times.each do |i| %>
+            <% term = v.split(' ')[i] %>
+            <% df = @vocabulary.occurrence_in_document_key(ky, term , vl) %>
+            <% weight= df > 0 ? 1 : 0 %>
+            <td><%= df %></td>
+            <td><%= weight %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
     <table class="table table-bordered">
       <tr class="success">
         <td><b></b></td>
@@ -20,27 +50,48 @@
       </tr>
       <tr>
         <td>1ª</td>
-      <% documents.each do |kd, vd| %>
-        <td>
-          <% value = 0 %>
-          <% v.split(' ').each do |term| %>
-            <% if vocabulary.get_words_by_document(vd).include?(term) %>
-              <% value = value + Vocabulary.probabilistic(documents.count, vocabulary.occurrence_in_document(term, kd)) %>
-              <!-- <b><%#=# vocabulary.occurrence_in_document(term, kd)) %></b>
-              <b><%#=# documents.count %></b> -->
+        <% documents.each do |kd, vd| %>
+          <td>
+            <% value = 0 %>
+            <% v.split(' ').each do |term| %>
+              <% value = value + @vocabulary.probabilistic(kd, term, vd) %>
             <% end %>
-          <% end %>
-          <%= value.round(4) %>
-        </td>
-      <% end %>
+            <%= value.round(4) %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>2ª</td>
+        <% documents.each do |kd, vd| %>
+          <td>
+            <% value = 0 %>
+            <% v.split(' ').each_with_index do |term, index| %>
+              <% value = value + @vocabulary.probabilistic_next(kd, term, vd, @params[cont][1][index], @params[cont][0][index]) %>
+            <% end %>
+            <%= value.round(4) %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <td>3ª</td>
+        <% documents.each do |kd, vd| %>
+          <td>
+            <% value = 0 %>
+            <% v.split(' ').each do |term| %>
+              <% value = 0 %>
+            <% end %>
+            <%= value.round(4) %>
+          </td>
+        <% end %>
       </tr>
     </table>
     <div class="well well-small">
       <h5>=> Query: <%= v %>  
         <br />
-         <%= Vocabulary.probabilistic_new(v, documents) %>
+         <%=  %>
       </h5>
     </div>
     <hr class="soften">
+    <% cont += 1 %>
   <% end %>
 </div>
