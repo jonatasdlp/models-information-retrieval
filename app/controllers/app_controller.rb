@@ -42,9 +42,15 @@ class AppController < ApplicationController
   def probabilistic
     base
     @queries = {q1: "recuperacao de informacao", q2: "banco de dados", q3: "projeto de algoritmo"}
+    @params = [[[3,8,3],[3,4,3],[3,4,3]],[[2,8,7],[2,4,4],[2,4,4]],[[2,8,2],[2,4,2],[2,4,2]]]
   end
 
   def bm_25
+    base
+    @queries = {q1: "recuperacao de informacao", q2: "banco de dados", q3: "projeto de algoritmo"}
+  end
+
+  def set_based
     base
     @queries = {q1: "recuperacao de informacao", q2: "banco de dados", q3: "projeto de algoritmo"}
   end

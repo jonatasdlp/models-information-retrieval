@@ -16,6 +16,7 @@ ModelsInformationRetrieval::Application.routes.draw do
       get :sim_terms
       get :calc_terms
       get :rank_terms
+      get :set_based
     end
   end
   
