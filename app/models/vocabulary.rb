@@ -201,8 +201,8 @@ class Vocabulary
   def probabilistic_next(key, word, doc, rel_a, rel_b)
     docs = 8
     r_in_coll = 4
-    self.occurrence_in_document_key(key, word, doc) > 0 ?
-      Math.log2(((rel_a + 0.5)/(r_in_coll - rel_a + 0.5)).to_f * ((8 - 3 - 4 + 8 - 0.5)/(rel_b - rel_a + 0.5)).to_f) : 0
+    self.occurrence_in_document_key(key, word, doc) > 0 ?                                  
+    Math.log(((rel_a.to_f + 0.5)/(r_in_coll - rel_b.to_f + 0.5).to_f) * ((docs - rel_b.to_f - r_in_coll.to_f + rel_a.to_f + 0.5)/((rel_a.to_f - rel_b.to_f) + 0.5)).to_f) : 0
   end
 
   def self.query_in_documents(query, documents)

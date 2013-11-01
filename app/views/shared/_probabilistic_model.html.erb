@@ -66,7 +66,7 @@
           <td>
             <% value = 0 %>
             <% v.split(' ').each_with_index do |term, index| %>
-              <% value = value + @vocabulary.probabilistic_next(kd, term, vd, @params[cont][1][index], @params[cont][0][index]) %>
+              <% value = value + @vocabulary.probabilistic_next(kd, term, vd, @params[1][1][index], @params[1][0][index]) %>
             <% end %>
             <%= value.round(4) %>
           </td>
@@ -77,8 +77,8 @@
         <% documents.each do |kd, vd| %>
           <td>
             <% value = 0 %>
-            <% v.split(' ').each do |term| %>
-              <% value = 0 %>
+            <% v.split(' ').each_with_index do |term, index| %>
+              <% value = value + @vocabulary.probabilistic_next(kd, term, vd, @params[2][1][index], @params[2][0][index]) %>
             <% end %>
             <%= value.round(4) %>
           </td>

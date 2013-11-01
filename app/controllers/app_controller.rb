@@ -50,6 +50,11 @@ class AppController < ApplicationController
     @queries = {q1: "recuperacao de informacao", q2: "banco de dados", q3: "projeto de algoritmo"}
   end
 
+  def set_based
+    base
+    @queries = {q1: "recuperacao de informacao", q2: "banco de dados", q3: "projeto de algoritmo"}
+  end
+
   def term_list
     bm_25
   end
